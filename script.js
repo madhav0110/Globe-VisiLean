@@ -132,6 +132,7 @@ var locations = [
     }
 ];
 
+    // Slideshow and progress bar logic
     var slideshowRunning = false;
     var currentLocationIndex = 0;
     var currentViewIndex = 0;
@@ -148,7 +149,11 @@ var locations = [
                 pitch: view.pitch,
                 roll: view.roll
             },
-            duration: 5.0
+            duration: 5.0,
+            complete: function() {
+                // Restart progress bar after moving to the new location
+                resetProgressBar();
+            }
         });
     }
 
@@ -162,14 +167,7 @@ var locations = [
             }
         }, 8000);
 
-        document.getElementById('progress-bar').style.visibility = 'visible'; 
-        document.getElementById('progress-bar').style.transition = 'none'; 
-        document.getElementById('progress-bar').style.width = '0%';
-
-        progressIntervalId = setInterval(function() {
-            var progress = (currentLocationIndex + currentViewIndex / locations[currentLocationIndex].cameraViews.length) / locations.length * 100;
-            document.getElementById('progress-bar').style.width = progress + '%';
-        }, 100);
+        resetProgressBar(); // Initialize progress bar for the first location
     }
 
     function stopSlideshow() {
@@ -181,6 +179,22 @@ var locations = [
         document.getElementById('progress-bar').style.width = '0%';
     }
 
+    function resetProgressBar() {
+        clearInterval(progressIntervalId);
+        document.getElementById('progress-bar').style.visibility = 'visible'; 
+        document.getElementById('progress-bar').style.transition = 'none'; 
+        document.getElementById('progress-bar').style.width = '0%';
+
+        var progressWidth = 0;
+        progressIntervalId = setInterval(function() {
+            progressWidth += 1;
+            document.getElementById('progress-bar').style.width = progressWidth + '%';
+            if (progressWidth >= 100) {
+                clearInterval(progressIntervalId);
+            }
+        }, 50); // Adjust the interval duration to match the transition time
+    }
+
     document.getElementById('slideshowButton').addEventListener('click', function() {
         if (slideshowRunning) {
             stopSlideshow();
@@ -190,6 +204,7 @@ var locations = [
         slideshowRunning = !slideshowRunning;
     });
 
+    // Add 3D models to the viewer
     locations.forEach(location => {
         viewer.entities.add({
             position: Cesium.Cartesian3.fromDegrees(location.longitude, location.latitude, 0.0),
@@ -207,6 +222,7 @@ var locations = [
         });
     });
 
+    // Hover card logic for displaying details on hover
     const hoverCard = document.getElementById('hover-card');
     viewer.screenSpaceEventHandler.setInputAction((movement) => {
         const pickedObject = viewer.scene.pick(movement.endPosition);
@@ -220,6 +236,7 @@ var locations = [
         }
     }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
 
+    // Click event logic for displaying details on click
     viewer.screenSpaceEventHandler.setInputAction((click) => {
         const pickedObject = viewer.scene.pick(click.position);
         if (Cesium.defined(pickedObject) && pickedObject.id) {
