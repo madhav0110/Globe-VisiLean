@@ -79,26 +79,435 @@ html, body, #cesiumContainer {
 #hover-card {
     position: absolute;
     display: none; /* Initially hidden */
-    background-color: #6595BF;
+    background-color: #ffffff;
     border: 1px solid #ccc;
-    text-align: center;
     border-radius: 8px;
-    color: white;
+    color: rgb(0, 0, 0);
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
     padding: 10px;
-    max-width: 200px;
+    max-width: 300px; /* Adjust width as needed */
     z-index: 1000; /* Ensure it is above other elements */
+    /* Positioning relative to its container */
+}
+#hover-card h3 {
+    position: absolute;
+    top: 10px; /* Adjust top position as needed */
+    left: 140px; /* Adjust left position to be right of the image */
+    margin: 0;
+    color: rgb(0, 0, 0);
+    font-size: 20px; /* Adjust font size as needed */
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: bolder;
+    white-space: normal; /* Allow text to wrap */
+    word-wrap: break-word; /* Break long words if necessary */
+    overflow-wrap: break-word; /* Handle long words in modern browsers */
+    
+}
+
+#hover-card .description {
+    margin: 5px 0; /* Adjust margins as needed */
+    text-align: left; /* Align text to the left */
+    font-weight: normal; /* Normal font weight */
+}
+
+/* Specific styles for the first description paragraph */
+#hover-card .Location {
+    position: absolute;
+    top: 60px; /* Adjust the top position as needed */
+    left: 140px; /* Adjust the left position as needed */
+    font-size: 15px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    color: #619EFF;
+
+}
+
+/* Specific styles for the second description paragraph */
+#hover-card .description-1 {
+    position: relative;
+    top: 0px; /* Adjust the top position as needed */
+    left: 0px; /* Adjust the left position as needed */
+    font-size: 15px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    color:#A0AABC;
+    ;
+    /* Additional styles as needed */
 }
 
 
-/* Style for pin hover card */
-.pin-hover-card {
-    background-color: lightblue;
-    border-color: blue;
+.image-style {
+    position: relative; /* Change from static to relative */
+    width: 40%; /* Adjust the width percentage as needed */
+    height: auto; /* Maintain aspect ratio */
+    left: 0%; /* Move the image to the left */
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-/* Style for model hover card */
-.model-hover-card {
-    background-color: lightgreen;
-    border-color: green;
+
+.image-style-small {
+    position: relative; /* Change from static to relative */
+    width: 40%; /* Adjust the width percentage as needed */
+    height: auto; /* Maintain aspect ratio */
+    left: 0%; /* Move the image to the left */
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Media queries for mobile responsiveness */
+@media (max-width: 2561px) {
+
+    /* Adjusting button and container sizes for smaller screens */
+    #slideshow-button img, .customButton {
+        width: 170px; /* Smaller button size */
+        height: auto;
+    }
+
+    #customHomeButton {
+        bottom: 520px; /* Position lower on screen */
+        right: 0px; /* Adjust right position */
+    }
+
+    #slideshowButton {
+        bottom: 400px; /* Position lower on screen */
+        right: 0px; /* Adjust right position */
+    }
+
+    #progressContainer {
+        bottom: 410px; /* Adjust to fit smaller screens */
+        width: 85px; /* Adjust width */
+        height: 12px;
+    }
+
+    #hover-card {
+        max-width: 30%; /* Allow hover card to take more width on small screens */
+        left: 5%; /* Center the hover card */
+        top: 20px; /* Adjust top position */
+        padding: 5px; /* Adjust padding for smaller screens */
+    }
+
+    #hover-card h3 {
+        left: 35%; /* Adjust position for smaller screens */
+        font-size: 30px; /* Adjust font size */
+    }
+
+    #hover-card .Location {
+        left: 35%; /* Adjust positions */
+        top: 50%;
+        font-size: 24px; /* Adjust font size */
+    }
+    
+    #hover-card .description-1 {
+        left: 10px; /* Adjust positions */
+        font-size: 20px; /* Adjust font size */
+    }
+
+    .image-style, .image-style-small {
+        width: 30%; /* Increase width for smaller screens */
+    }
+}
+/* Media queries for mobile responsiveness */
+@media (max-width: 1441px) {
+
+    /* Adjusting button and container sizes for smaller screens */
+    #slideshow-button img, .customButton {
+        width: 90px; /* Smaller button size */
+        height: auto;
+    }
+
+    #customHomeButton {
+        bottom: 280px; /* Position lower on screen */
+        right: 0px; /* Adjust right position */
+    }
+
+    #slideshowButton {
+        bottom: 220px; /* Position lower on screen */
+        right: 0px; /* Adjust right position */
+    }
+
+    #progressContainer {
+        bottom: 230px; /* Adjust to fit smaller screens */
+        width: 45px; /* Adjust width */
+        height: 7px;
+    }
+
+    #hover-card {
+        max-width: 50%; /* Allow hover card to take more width on small screens */
+        left: 5%; /* Center the hover card */
+        top: 20px; /* Adjust top position */
+        padding: 5px; /* Adjust padding for smaller screens */
+    }
+
+    #hover-card h3 {
+        left: 35%; /* Adjust position for smaller screens */
+        font-size: 22px; /* Adjust font size */
+    }
+
+    #hover-card .Location {
+        left: 35%; /* Adjust positions */
+        font-size: 18px; /* Adjust font size */
+
+    }
+    
+    #hover-card .description-1 {
+        left: 10px; /* Adjust positions */
+        font-size: 14px; /* Adjust font size */
+    }
+
+    .image-style, .image-style-small {
+        width: 30%; /* Increase width for smaller screens */
+    }
+}
+/* Media queries for mobile responsiveness */
+@media (max-width: 1025px) {
+
+    /* Adjusting button and container sizes for smaller screens */
+    #slideshow-button img, .customButton {
+        width: 40px; /* Smaller button size */
+        height: auto;
+    }
+
+    #customHomeButton {
+        bottom: 235px; /* Position lower on screen */
+        right: 0px; /* Adjust right position */
+    }
+
+    #slideshowButton {
+        bottom: 190px; /* Position lower on screen */
+        right: 0px; /* Adjust right position */
+    }
+
+    #progressContainer {
+        bottom: 195px; /* Adjust to fit smaller screens */
+        width: 35px; /* Adjust width */
+        right: 0px;
+        height: 6px;
+    }
+
+    #hover-card {
+        max-width: 50%; /* Allow hover card to take more width on small screens */
+        left: 5%; /* Center the hover card */
+        top: 20px; /* Adjust top position */
+        padding: 5px; /* Adjust padding for smaller screens */
+    }
+
+    #hover-card h3 {
+        left: 35%; /* Adjust positions */
+        font-size: 16px; /* Adjust font size */
+    }
+
+    #hover-card .Location{
+        left: 35%; /* Adjust positions */
+        font-size: 14px; /* Adjust font size */
+    } 
+    
+    #hover-card .description-1 {
+        left: 10px; /* Adjust positions */
+        font-size: 14px; /* Adjust font size */
+    }
+
+    .image-style, .image-style-small {
+        width: 30%; /* Increase width for smaller screens */
+    }
+}
+
+/* Media queries for mobile responsiveness */
+@media (max-width: 769px) {
+
+    /* Adjusting button and container sizes for smaller screens */
+    #slideshow-button img, .customButton {
+        width: 70px; /* Smaller button size */
+        height: auto;
+    }
+
+    #customHomeButton {
+        bottom: 230px; /* Position lower on screen */
+        right: 0px; /* Adjust right position */
+    }
+
+    #slideshowButton {
+        bottom: 180px; /* Position lower on screen */
+        right: 0px; /* Adjust right position */
+    }
+
+    #progressContainer {
+        bottom: 185px; /* Adjust to fit smaller screens */
+        width: 35px; /* Adjust width */
+    }
+
+    #hover-card {
+        max-width: 53%; /* Allow hover card to take more width on small screens */
+        left: 5%; /* Center the hover card */
+        top: 20px; /* Adjust top position */
+        padding: 5px; /* Adjust padding for smaller screens */
+    }
+
+    #hover-card h3 {
+        left: 35%; /* Adjust positions */
+        font-size: 16px; /* Adjust font size */
+    }
+
+    #hover-card .Location {
+        left: 35%; /* Adjust positions */
+        top: 50px;
+        font-size: 14px; /* Adjust font size */
+    }
+    
+    #hover-card .description-1 {
+        left: 10px; /* Adjust positions */
+        font-size: 13px; /* Adjust font size */
+    }
+
+    .image-style, .image-style-small {
+        width: 30%; /* Increase width for smaller screens */
+    }
+}
+/* Media queries for mobile responsiveness */
+@media (max-width: 426px) {
+
+    /* Adjusting button and container sizes for smaller screens */
+    #slideshow-button img, .customButton {
+        width: 60px; /* Smaller button size */
+        height: auto;
+    }
+
+    #customHomeButton {
+        bottom: 230px; /* Position lower on screen */
+        right: 0px; /* Adjust right position */
+    }
+
+    #slideshowButton {
+        bottom: 190px; /* Position lower on screen */
+        right: 0px; /* Adjust right position */
+    }
+
+    #progressContainer {
+        bottom: 195px; /* Adjust to fit smaller screens */
+        width: 30px; /* Adjust width */
+        height: 6px;
+    }
+
+    #hover-card {
+        max-width: 50%; /* Allow hover card to take more width on small screens */
+        left: 5%; /* Center the hover card */
+        top: 20px; /* Adjust top position */
+        padding: 5px; /* Adjust padding for smaller screens */
+    }
+
+    #hover-card h3 {
+        left: 55%; /* Adjust positions */
+        font-size: 9px; /* Adjust font size */
+    }
+
+    #hover-card .Location{
+        left: 55%; /* Adjust positions */
+        top: 40px;
+        font-size: 8px; /* Adjust font size */} 
+    
+        #hover-card .description-1 {
+        left: 10px; /* Adjust positions */
+        font-size: 7px; /* Adjust font size */
+    }
+
+    .image-style, .image-style-small {
+        width: 50%; /* Increase width for smaller screens */
+    }
+}
+@media (max-width: 376px) {
+
+    /* Adjusting button and container sizes for smaller screens */
+    #slideshow-button img, .customButton {
+        width: 60px; /* Smaller button size */
+        height: auto;
+    }
+
+    #customHomeButton {
+        bottom: 230px; /* Position lower on screen */
+        right: 0px; /* Adjust right position */
+    }
+
+    #slideshowButton {
+        bottom: 190px; /* Position lower on screen */
+        right: 0px; /* Adjust right position */
+    }
+
+    #progressContainer {
+        bottom: 195px; /* Adjust to fit smaller screens */
+        width: 30px; /* Adjust width */
+        height: 6px;
+    }
+
+    #hover-card {
+        max-width: 50%; /* Allow hover card to take more width on small screens */
+        left: 5%; /* Center the hover card */
+        top: 20px; /* Adjust top position */
+        padding: 5px; /* Adjust padding for smaller screens */
+    }
+
+    #hover-card h3 {
+        left: 55%; /* Adjust positions */
+        font-size: 8px; /* Adjust font size */
+    }
+
+    #hover-card .Location{
+        left: 55%; /* Adjust positions */
+        font-size: 8px; /* Adjust font size */} 
+    
+        #hover-card .description-1 {
+        left: 10px; /* Adjust positions */
+        font-size: 10px; /* Adjust font size */
+    }
+
+    .image-style, .image-style-small {
+        width: 50%; /* Increase width for smaller screens */
+    }
+}
+@media (max-width: 321px) {
+
+    /* Adjusting button and container sizes for smaller screens */
+    #slideshow-button img, .customButton {
+        width: 60px; /* Smaller button size */
+        height: auto;
+    }
+
+    #customHomeButton {
+        bottom: 230px; /* Position lower on screen */
+        right: 0px; /* Adjust right position */
+    }
+
+    #slideshowButton {
+        bottom: 190px; /* Position lower on screen */
+        right: 0px; /* Adjust right position */
+    }
+
+    #progressContainer {
+        bottom: 195px; /* Adjust to fit smaller screens */
+        width: 30px; /* Adjust width */
+        height: 6px;
+    }
+
+    #hover-card {
+        max-width: 50%; /* Allow hover card to take more width on small screens */
+        left: 5%; /* Center the hover card */
+        top: 20px; /* Adjust top position */
+        padding: 5px; /* Adjust padding for smaller screens */
+    }
+
+    #hover-card h3 {
+        left: 55%; /* Adjust positions */
+        font-size: 7px; /* Adjust font size */
+    }
+
+    #hover-card .Location{
+        left: 55%; /* Adjust positions */
+        top: 30px;
+        font-size: 7px; /* Adjust font size */} 
+    
+        #hover-card .description-1 {
+        left: 0px; /* Adjust positions */
+        font-size: 8px; /* Adjust font size */
+    }
+
+    .image-style, .image-style-small {
+        width: 50%; /* Increase width for smaller screens */
+    }
 }
