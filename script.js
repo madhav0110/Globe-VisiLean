@@ -318,6 +318,10 @@ document.addEventListener('DOMContentLoaded', () => {
      var progressIntervalId = null;
      var progressWidth = 0;
      var progressRunning = false;
+
+     const slideshowButton = document.getElementById('slideshowButton');
+     const playIcon = document.getElementById('play-icon');
+     const pauseIcon = document.getElementById('pause-icon');
  
      function moveToLocationView(locationIndex, viewIndex) {
          var location = locations[locationIndex];
@@ -329,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
                  pitch: view.pitch,
                  roll: view.roll
              },
-             duration: 7.0,
+             duration: 6.0,
              complete: function() {
                  // Restart progress bar after moving to the new location
                  resetProgressBar();
@@ -346,11 +350,15 @@ document.addEventListener('DOMContentLoaded', () => {
              if (currentViewIndex === 0) {
                  currentLocationIndex = (currentLocationIndex + 1) % locations.length;
              }
-         }, 7000); // 7 seconds per view
+         }, 6000); // 7 seconds per view
  
          if (!progressRunning) {
              resetProgressBar(); // Initialize progress bar for the first location
          }
+    // Toggle visibility of play and pause icons
+    playIcon.style.display = 'none'; // Hide play icon
+    pauseIcon.style.display = 'block'; // Show pause icon
+
      }
  
      function stopSlideshow() {
@@ -361,6 +369,9 @@ document.addEventListener('DOMContentLoaded', () => {
          progressRunning = false;
          document.getElementById('progress-bar').style.visibility = 'hidden'; 
          document.getElementById('progress-bar').style.width = progressWidth + '%';
+    // Toggle visibility of play and pause icons
+    playIcon.style.display = 'block'; // Show play icon
+    pauseIcon.style.display = 'none'; // Hide pause icon
      }
  
      function resetProgressBar() {
@@ -400,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
             model: {
                 uri: location.model,
                 scale: location.scale,
-                minimumPixelSize: 15,
+                minimumPixelSize: 0,
                 maximumScale: 20000000.0
             },
             orientation: Cesium.Transforms.headingPitchRollQuaternion(
